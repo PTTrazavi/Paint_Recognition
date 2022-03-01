@@ -1,5 +1,6 @@
 import pickle
 import numpy as np
+import random
 import tensorflow as tf
 from tensorflow.keras.layers.experimental.preprocessing import Normalization
 
@@ -14,8 +15,11 @@ def Annotation_loading(filename, mode):
 
 def _transform_images():
     def transform_images(x_train):
+        seed = (random.randint(1, 9),random.randint(1, 9))
         x_train = tf.image.resize(x_train, (128, 128))
         x_train = tf.image.random_crop(x_train, (112, 112, 3))
+        x_train = tf.image.stateless_random_brightness(x_train, max_delta=0.1, seed=seed)
+        x_train = tf.image.stateless_random_contrast(x_train, lower=0.7, upper=1.3, seed=seed)
         x_train /= 255.
         return x_train
     return transform_images
