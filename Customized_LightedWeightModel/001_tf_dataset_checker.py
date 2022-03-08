@@ -13,7 +13,9 @@ def main(annot_file):
 
     for idx, parsed_record in tqdm(enumerate(train_dataset)):
         Img, label = parsed_record
-        recon_img = np.array(Img[0].numpy() * 255, 'uint8')
+        # recon_img = np.array(Img[0].numpy() * 255, 'uint8')
+        recon_img = np.array(Img[0].numpy() * 127.5) + 127.5
+        # recon_img = np.array(Img[0].numpy(), 'uint8')
         cv2.imwrite(f'./Previewed_image/{idx:04d}.jpg', cv2.cvtColor(recon_img, cv2.COLOR_RGB2BGR))
         if idx == 16:
             break

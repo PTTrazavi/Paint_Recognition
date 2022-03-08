@@ -5,7 +5,8 @@ def inference(interpreter, input_details, output_details, ImagePath):
 	def Image_preprocessing(ImagePath, ImageSize=112):
 		Images = tf.image.decode_jpeg(tf.io.read_file(ImagePath), channels=3)
 		resized_Images = tf.image.resize(Images, (ImageSize, ImageSize))
-		resized_Images = resized_Images / 255.
+		# resized_Images = resized_Images / 255.
+		resized_Images = (resized_Images - 127.5) / 127.5
 		# expand 1 dimension(batch dimension)
 		resized_Images = tf.expand_dims(resized_Images, axis=0)
 		return resized_Images

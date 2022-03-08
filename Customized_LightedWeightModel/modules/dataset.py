@@ -20,7 +20,8 @@ def _transform_images():
         x_train = tf.image.random_crop(x_train, (112, 112, 3))
         x_train = tf.image.stateless_random_brightness(x_train, max_delta=0.1, seed=seed)
         x_train = tf.image.stateless_random_contrast(x_train, lower=0.7, upper=1.3, seed=seed)
-        x_train /= 255.
+        # x_train /= 255.
+        x_train = (x_train - 127.5) / 127.5
         return x_train
     return transform_images
 

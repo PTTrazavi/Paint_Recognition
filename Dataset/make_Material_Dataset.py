@@ -3,6 +3,7 @@ import random
 import numpy as np
 import pickle
 from sklearn.model_selection import train_test_split
+import cv2
 
 
 def create_annotation_file(root_folder, target, contain_50, save_path, VALIDATION_RATIO = 0.15):
@@ -70,6 +71,23 @@ def create_annotation_file(root_folder, target, contain_50, save_path, VALIDATIO
         }
     pickle.dump(data_file, open(save_path, 'wb'))
     print(f"saved image paths and labels in {save_path}")
+
+    # calculate image mean and std
+    pixels = 0
+    std_sum = 0
+    count = 0
+    for i in X_train:
+        image = cv2.imread(i)
+        pixels = pixels + np.sum(image)
+        count = count + image.size
+    mean = pixels/count
+    print(f"training data mean: {round(mean,1)}")
+    for i in X_train:
+        image = cv2.imread(i)
+        std_sum = std_sum + np.sum((image - mean)**2)
+    std = (std_sum/count)**0.5
+    print(f"training data std: {round(std,1)}")
+
 
 if __name__== '__main__':
     root_folder = "../Customized_LightedWeightModel/20220107JURASSIC_PIC_rename"

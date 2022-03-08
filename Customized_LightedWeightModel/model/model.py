@@ -46,6 +46,7 @@ def customized_Lightweight_model(
     input_shape,
 ):
     x = x_input = layers.Input(input_shape, name='input_image')
+    # x = layers.Rescaling(1./255)(x)
     x = Lightweight_model()(x)
     x = layers.Dense(64,activation='relu')(x)
     x = layers.Dense(5,activation='softmax')(x)
