@@ -37,6 +37,6 @@ def main(model_path, ImagePath):
 	inference(interpreter, input_details, output_details, ImagePath)
 
 if __name__ == '__main__':
-	ImagePath = './20220107JURASSIC_PIC_rename/01/01/square-uvc-sample-52974328703895612.jpg'
+	ImagePath = './20220107JURASSIC_PIC_rename/00/03/uvc-sample-2019914016662063000.jpg'
 	model_path = "./checkpoints/model_00.tflite"
 	main(model_path, ImagePath)

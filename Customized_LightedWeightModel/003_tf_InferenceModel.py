@@ -103,9 +103,9 @@ if __name__ == '__main__':
     # set parameters
     pkl_files = './data/dataset_00.pkl'
     model_ckpt_path = './checkpoints/00/'
-    val_samples = 114
-    batch_size = 2
+    val_samples = 80
+    batch_size = 1
     # Run through all validation dataset
     TestingModel()
     # Test 1 image
-    TestingImage('./20220107JURASSIC_PIC_rename/01/01/square-uvc-sample-52974328703895612.jpg')
+    TestingImage('./20220107JURASSIC_PIC_rename/00/03/uvc-sample-2019914016662063000.jpg')
